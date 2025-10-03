@@ -1,7 +1,7 @@
-# RFID-SCANNER
-//By using this code we can print RFID UID on LCD display by using arduino uno R3 board and    MFRC522.
+# RFID UID SCANNER
+//By using this program we can print RFID UID on LCD display by using arduino uno R3 board and MFRC522.
 
-//RFID SCANNER 
+//RFID SCANNER Made and Programed 
 //BY Y.YOGANAND AND E.ANIL CHARLES
  
 #include <LiquidCrystal_I2C.h>
