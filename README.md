@@ -1,58 +1,29 @@
-# RFID UID SCANNER
-//By using this program we can print RFID UID on LCD display by using arduino uno R3 board and MFRC522.
 
-//RFID SCANNER Made and Programed 
+# RFID Scanner 🔍
+### Overview
+This project is a basic RFID scanner that reads unique RFID tag IDs and displays them on a 16x2 LCD display.  
+Built using **Arduino UNO R3** and **RC522 RFID module**, this system demonstrates fundamental RFID tag reading and serial communication.
+
+### Components Used
+- Arduino UNO R3  
+- RC522 RFID Reader Module  
+- 16x2 JHD LCD Display  
+- Jumper Wires and Breadboard  
+
+### Features
+- Reads RFID tag unique ID (UID)  
+- Displays scanned UID on LCD  
+- Serial monitor output for debugging  
+
+### Skills Demonstrated
+C Programming | SPI Communication | LCD Interfacing | Serial Data Handling  
+
+### Future Enhancements
+- Store multiple RFID UIDs in EEPROM  
+- Add buzzer or LED for visual feedback  
+
+### Demo
+*(Insert image or video link of working prototype)*  
+
+### Author
 //BY Y.YOGANAND AND E.ANIL CHARLES
- 
-#include <LiquidCrystal_I2C.h>
-#include <SPI.h>
-#include <MFRC522.h>
-
-#define RST_PIN 9
-#define SS_PIN  10
-byte readCard[4];
-byte a = 0;
-
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-MFRC522 mfrc522(SS_PIN, RST_PIN);
-
-void setup() {
-  Serial.begin(9600);
-  lcd.init();
-  lcd.backlight();
-  while (!Serial);
-  SPI.begin();
-  mfrc522.PCD_Init();
-  delay(4);
-  mfrc522.PCD_DumpVersionToSerial();
-  lcd.setCursor(2, 0);
-  lcd.print("Put your card");
-}
-
-void loop() {
-  if ( ! mfrc522.PICC_IsNewCardPresent()) {
-    return 0;
-  }
-  if ( ! mfrc522.PICC_ReadCardSerial()) {
-    return 0;
-  }
-
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Scanned UID");
-  a = 0;
-  Serial.println(F("Scanned PICC's UID:"));
-  for ( uint8_t i = 0; i < 4; i++) {  //
-    readCard[i] = mfrc522.uid.uidByte[i];
-    Serial.print(readCard[i], HEX);
-    Serial.print(" ");
-    lcd.setCursor(a, 1);
-    lcd.print(readCard[i], HEX);
-    lcd.print(" ");
-    delay(500);
-    a += 3;
-  }
-  Serial.println("");
-  mfrc522.PICC_HaltA();
-  return 1;
-}
