@@ -20,10 +20,7 @@ C Programming | SPI Communication | LCD Interfacing | Serial Data Handling
 
 ### Future Enhancements
 - Store multiple RFID UIDs in EEPROM  
-- Add buzzer or LED for visual feedback  
-
-### Demo
-*(Insert image or video link of working prototype)*  
+- Add buzzer or LED for visual feedback    
 
 ### Author
 //BY Y.YOGANAND AND E.ANIL CHARLES
